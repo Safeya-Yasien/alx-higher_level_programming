@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-strtmp = ""
-for i in reversed(range(97, 123)):
-    if (i % 2) == 0:
-        strtmp += chr(i)
-    else:
-        strtmp += chr(i-32)
-print("{}".format(strtmp), end="")
+# 100-print_tebahpla.py
+# Brennan D Baraban <375@holbertonschool.com>
+
+""""Print the alphabet in reverse order alternating upper- and lower-case."""
+i = 0
+for c in range(ord('z'), ord('a') - 1, -1):
+    print("{}".format(chr(c - i)), end="")
+    i = 32 if i == 0 else 0
