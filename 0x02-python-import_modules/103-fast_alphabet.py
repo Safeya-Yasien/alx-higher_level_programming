@@ -1,3 +1,3 @@
-#!/usr/bin/python3
-import string
-print(string.ascii.uppercase)
+from alf import alph
+if __name__ == "__main__":
+    print(alph)
