@@ -1,4 +1,4 @@
-#include "list.h"
+#include "lists.h"
 /**
  * print_dlistint - print all nodes
  * @h: pointer to head
