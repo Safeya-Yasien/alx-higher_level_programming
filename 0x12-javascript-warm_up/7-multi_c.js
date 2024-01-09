@@ -1,11 +1,9 @@
 #!/usr/bin/node
-const array = process.argv.slice(2);
-const times = array[0];
-let i = 0;
-if (times === 0 || times === undefined) {
+const x = Math.floor(Number(process.argv[2]));
+if (isNaN(x)) {
   console.log('Missing number of occurrences');
 } else {
-  for (i = 0; i < times; i++) {
+  for (let i = 0; i < x; i++) {
     console.log('C is fun');
   }
 }
