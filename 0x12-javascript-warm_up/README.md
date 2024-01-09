@@ -1,1 +1,1 @@
-javascript warm up
+# 0x12. JavaScript - Warm up
