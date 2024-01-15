@@ -1,80 +1,167 @@
-# 0x0F. Python - Object-relational mapping
+# Python - Object-relational mapping
 
-## Description
-This repository contains practical coding exercises and examples for the Python programming language that illustrate how to use Object-Relational Mapping (ORM) or Object-DataBase Mapping (ODM) to interact with databases.
+In this project, I learned about how object-relational mapping is used for
+database scripting. I became familiar with using MySQLdb and SQLAlchemy to
+query, create, edit, and delete tables in MySQL.
 
-The concepts of ORM or ODM can be explained in simple terms as a programming technique that defines a mapping between our database tables and the classes or objects that we use in our application. In other words, ORM helps us to avoid writing raw SQL queries and provides a more convenient high-level interface to work with the database without the need to know the underlying database technology.
+## Tests :heavy_check_mark:
 
-ORM is a useful tool that enables developers to focus on the main functionality of their application without worrying about the details of the database management, allowing them to create, read, update, and delete (CRUD) data from the database using Python code.
+* [tests](./tests): Folder of SQL and Python scripts for setting up test tables
+for all files. Provided by Holberton School.
 
-## Learning objectives
-In this project, we will learn how to:
-* How to connect to a database from a Python script or program.
-* How to perform CRUD (create-read-update-delete) operations on the database.
-* How to map database tables to Python classes.
-* How to use SQLalchemy to perform ORM in Python.
-* How to join database tables using SQLalchemy.
-* How to use Flask web framework to build a simple web application that interacts with the database.
+## Tasks :page_with_curl:
 
-## Repository Files
+* **0. Get all states**
+  * [0-select_states.py](./0-select_states.py): Python script that uses MySQLdb
+  to list all states in the database `hbtn_0e_0_usa`.
+  * Usage: `./0-select_states.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are ordered by ascending `states.id`.
 
-| File | Description |
-| ------------- | ------------- |
-| `0-select_states.py` | Python script that lists all states from the database |
-| `1-filter_states.py` | Python script that filters all states that contain a given letter |
-| `2-my_filter_states.py` | Python script that takes in an argument and displays all values in the states table of our `hbtn_0e_0_usa` database where `name` matches the argument |
-| `3-my_safe_filter_states.py` | Python script that takes in arguments and displays all values in the states table of our `hbtn_0e_0_usa` database where `name` matches the argument. But this time, it is safe from MySQL injection attacks. |
-| `4-cities_by_state.py` | Python script that lists all `cities` from the database that belong to a given `state`. |
-| `5-filter_cities.py` | Python script that takes in the name of a `state` as an argument and lists all `cities` of that `state`. |
-| `model_state.py` | Python file that contains the `State` class and an instance `Base` = `declarative_base()`. |
-| `7-model_state_fetch_all.py` | Python script that lists all `State` objects from the database using SQLAlchemy. |
-| `8-model_state_fetch_first.py` | Python script that prints the first `State` object from the database using SQLAlchemy. |
-| `9-model_state_filter_a.py` | Python script that lists all `State` objects that contain the letter `a` from the database using SQLAlchemy. |
-| `10-model_state_my_get.py` | Python script that prints a `State` object by name from the database using SQLAlchemy. |
-| `11-model_state_insert.py` | Python script that adds the `State` object “Louisiana” to the database using SQLAlchemy. |
-| `12-model_state_update_id_2.py` | Python script that changes the name of a `State` object from the database using SQLAlchemy. |
-| `13-model_state_delete_a.py` | Python script that deletes all `State` objects that contain the letter `a` from the database using SQLAlchemy. |
-| `model_city.py` | Python file that contains the `City` class and an instance `Base` = `declarative_base()` that is linked to the MySQL database. |
-| `14-model_city_fetch_by_state.py` | Python script that lists all `City` objects from a database given a `state` name using SQLAlchemy. |
-| `relationship_city.py` | Python file that contains the `City` class and the `State` class, and creates a relationship between them using SQLAlchemy. It is used for task 15. |
-| `relationship_states_cities.py` | Python script that creates the `State` “California” with the `City` “San Francisco” linked to it, and prints the “`id`” attribute of both of them using SQLAlchemy. |
-| `web_flask` | Contains routes to access the MySQL database from a web browser. Initialize a web application, connects to the MySQL server and displays the content of the states and the cities tables. |
-| `100-relationship_states_cities.py` | Similar to `relationship_states_cities.py`, but this file creates the State “California” with the City “San Francisco” linked to it, as well as the City “San Francisco” with the State “California” linked to it, and prints the “`id`” attribute of both new City objects. |
-| `101-relationship_states_cities_list.py` | Lists all `City` objects from the database using SQLAlchemy. |
-| `102-relationship_cities.py` | Python file that contains the `City` class, the `State` class, and the `City` relationship with the `State`. |
+* **1. Filter states**
+  * [1-filter_states.py](./1-filter_states.py): Python script that uses MySQLdb
+  to list all states with names starting with `N` in the database `hbtn_0e_0_usa`.
+  * Usage: `./1-filter_states.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are ordered by ascending `states.id`.
 
-1. [0-select_states.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/0-select_states.py)
-2. [1-filter_states.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/1-filter_states.py)
-3. [2-my_filter_states.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/2-my_filter_states.py)
-4. [3-my_safe_filter_states.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/3-my_safe_filter_states.py)
-5. [4-cities_by_state.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/4-cities_by_state.py)
-6. [5-filter_cities.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/5-filter_cities.py)
-7. [model_state.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/model_state.py)
-8. [7-model_state_fetch_all.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/7-model_state_fetch_all.py)
-9. [8-model_state_fetch_first.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/8-model_state_fetch_first.py)
-10. [9-model_state_filter_a.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/9-model_state_filter_a.py)
-11. [10-model_state_my_get.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/10-model_state_my_get.py)
-12. [11-model_state_insert.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/11-model_state_insert.py)
-13. [12-model_state_update_id_2.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/12-model_state_update_id_2.py)
-14. [13-model_state_delete_a.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/13-model_state_delete_a.py)
-15. [model_city.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/model_city.py)
-16. [14-model_city_fetch_by_state.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/14-model_city_fetch_by_state.py)
-17. [relationship_city.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/relationship_city.py)
-18. [relationship_states_cities.py](https://github.com/brainstorma/alx-higher_level_programming/blob/master/0x0F-python-object_relational_mapping/relationship_states_cities.py)
+* **2. Filter states by user input**
+  * [2-my_filter_states.py](./2-my_filter_states.py): Python script that uses
+  MySQLdb to display all values matching a given name in the `states` table of
+  the database `hbtn_0e_0_usa`.
+  * Usage: `./2-my_filter_states.py <mysql username> <mysql password>
+  <database name> <state name searched>`.
+  * Results are ordered by ascending `states.id`.
+  * Uses string formatting to construct the SQL query.
 
+* **3. SQL Injection...**
+  * [3-my_safe_filter_states.py](./3-my_safe_filter_states.py): Python script
+  that uses MySQLdb to display all values matching a given name in the `states`
+  table of the database `hbtn_0e_0_usa`.
+  * Usage: `./3-my_safe_filter_states.py <mysql username> <mysql password>
+  <database name> <state name searched>`.
+  * Results are ordered by ascending `states.id`.
+  * Safe from SQL injections.
 
-## How to use
-* Clone the repository to your local directory:
-```sh
-git clone https://github.com/brainstorma/alx-higher_level_programming.git
-```
-* Change into the `0x0F-python-object_relational_mapping` directory:
-```sh
-cd 0x0F-python-object_relational_mapping
-```
+* **4. Cities by states**
+  * [4-cities_by_state.py](./4-cities_by_state.py): Python script that uses
+  MySQLdb to list all cities from the database `hbtn_0e_4_usa`.
+  * Usage: `./4-cities_by_state.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are ordered by ascending `cities.id`.
 
-## Author
-* **Brainstorma** - [Brainstorma](https://github.com/brainstorma) 
+* **5. All cities by state**
+  * [5-filter_cities.py](./5-filter_cities.py): Python script that uses MySQLdb
+  to list all cities of a given state in the database `hbtn_0e_4_usa`.
+  * Usage: `./5-filter_cities.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are sorted by ascending `cities.id`.
 
-## Acknowledgements
-* This project was undertaken as part of the curriculum for the ALX High-Level programme, (Software Engineering).
+* **6. First state model**
+  * [model_state.py](./model_state.py): Python module defining a class `State`
+  that inherits from SQLAlchemy `Base` and links to the MySQL table `states`.
+
+* **7. All states via SQLAlchemy**
+  * [7-model_state_fetch_all.py](./7-model_state_fetch_all.py): Python script
+  that uses SQLAlchemy to list all `State` objects from the database
+  `hbtn_0e_6_usa`.
+  * Usage: `./7-model_state_fetch_all.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are sorted by ascending `states.id`.
+
+* **8. First state**
+  * [8-model_state_fetch_first.py](./8-model_state_fetch_first.py): Python script
+  that uses SQLAlchemy to print the first `State` object from the database
+  `hbtn_0e_6_usa`, ordered by `states.id`.
+  * Usage: `./8-model_state_fetch_first.py <mysql username> <mysql password>
+  <database name>`.
+  * If the `states` table is empty, prints `Nothing`.
+
+* **9. Contains `a`**
+  * [9-model_state_filter_a.py](./9-model_state_filter_a.py): Python script
+  that uses SQLAlchemy to list all `State` objects that contain the letter `a`
+  in the database `hbtn_0e_6_usa`.
+  * Usage: `./9-model_state_filter_a.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are ordered by ascending `states.id`.
+
+* **10. Get a state**
+  * [10-model_state_my_get.py](./10-model_state_my_get.py): Python script that
+  uses SQLAlchemy to print the `id` of the `State` object with name matching that
+  passed as argument in the database `hbtn_0e_6_usa`.
+  * Usage: `./10-model_state_my_get.py <mysql username> <mysql password>
+  <database name> <state searched name>`.
+  * Displays the `id` of the matched `State`.
+  * If no match is found, prints `Not found`.
+
+* **11. Add a new state**
+  * [11-model_state_insert.py](./11-model_state_insert.py): Python script that
+  uses SQLAlchemy to add the `State` object "Louisiana" to the database
+`hbtn_0e_6_usa`.
+  * Usage: `./11-model_state_insert.py <mysql username> <mysql password>
+  <database name>`.
+  * Prints the `id` of the new `State` after creation.
+
+* **12. Update a state**
+  * [12-model_state_update_id_2.py](./12-model_state_update_id_2.py): Python
+  script that uses SQLAlchemy to change the name of the `State` object with
+  `id = 2` in the database `hbtn_0e_6_usa` to "New Mexico".
+  * Usage: `./12-model_state_update_id_2.py <mysql username> <mysql password>
+  <database name>`.
+
+* **13. Delete states**
+  * [13-model_state_delete_a.py](./13-model_state_delete_a.py): Python script
+  that uses SQLAlchemy to delete all `State` objects with a name containing the
+  letter `a` from the database `hbtn_0e_6_usa`.
+  * Usage: `./13-model_state_delete_a.py <mysql username> <mysql password>
+  <database name>`.
+
+* **14. Cities in state**
+  * [model_city.py](./model_city.py): Python module defining a class `City`
+  that inherits from SQLAlchemy `Base` and links to the MySQL table `cities`.
+    * Includes class attribute `state_id` that is a foreign key to
+    `states.id`.
+  * [14-model_city_fetch_by_state.py](./14-model_city_fetch_by_state.py):
+  Python script that uses SQLAlchemy to list all `City` objects in the database
+  `hbtn_0e_14_usa`.
+  * Usage: `./14-model_city_fetch_by_state.py <mysql username> <mysql password>
+  <database name>`.
+  * Results are sorted by ascending `cities.id`.
+
+* **15. City relationship**
+  * [relationship_state.py](./relationship_state.py): Python module defining a
+  class `State` that inherits from SQLAlchemy `Base` and links to the MySQL table
+  `states`.
+    * Identical to the `State` class defined in [model_state.py](./model_state.py).
+    * Includes class attribute `classes` that represents a relationship with
+    the class `City`. If the `State` object is deleted, all linked `City` objects
+    are also deleted. `State` objects are backreferenced to `City` objects as
+    `state`.
+  * [relationship_city.py](./relationship_city.py): Python module defining a
+  class `City` that inherits from SQLAlchemy `Base` and links to the MySQL table
+  `cities`.
+    * Identical to the `City` class defined in [model_city.py](./model_city.py).
+  * [100-relationship_states_cities.py](./100-relationship_states_cities.py):
+  Python script that uses SQLAlchemy to add the `State` "California" with `City`
+  "San Francisco" to the database `hbtn_0e_100_usa`.
+  * Usage: `./100-relationship_states_cities.py <mysql username>
+  <mysql password> <database name>`.
+  * Uses the `cities` relationship for all `State` objects.
+
+* **16. List relationship**
+  * [101-relationship_states_cities_list.py](./101-relationship_states_cities_list.py):
+  Python script that uses SQLAlchemy to list all `State` and corresponding
+  `City` objects in the database `hbtn_0e_101_usa`.
+  * Usage: `./101-relationship_states_cities_list.py <mysql username>
+  <mysql password> <database name>`.
+  * Uses the `cities` relationship for all `State` objects.
+  * Results are sorted by ascending `states.id` and `cities.id`.
+
+* **17. List city**
+  * [102-relationship_cities_states_list.py](./102-relationship_cities_states_list.py):
+  Python script that uses SQLAlchemy to list all `City` objects from the database
+  `hbtn_0e_101_usa`.
+  * Usage: `./102-relationship_cities_states_list.py <mysql username>
+  <mysql password> <database name>`.
+  * Uses the `state` relationship to access the `State` objects linked to `City` objects.
+  * Results are sorted by ascending `cities.id`.
