@@ -1,13 +1,20 @@
 #!/usr/bin/node
-const array = process.argv.slice(2);
 const request = require('request');
-const fs = require('fs');
-request(array[0], function (err, res, body) {
-  if (err) {
-  }
-  try {
-    fs.writeFileSync(array[1], body);
-  } catch (err) {
-    console.error(err);
-  }
-});
+let fs = require('fs');
+const url = process.argv[2];
+const file = process.argv[3];
+
+function storeWebpage (url, file) {
+  request(url, function (error, response, body) {
+    if (error) {
+      console.log(error);
+    } else {
+      fs.writeFile(file, body, function (err) {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  });
+}
+storeWebpage(url, file);

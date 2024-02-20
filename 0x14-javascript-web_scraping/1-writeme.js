@@ -1,9 +1,13 @@
 #!/usr/bin/node
-const array = process.argv.slice(2);
-const fs = require('fs');
-const content = array[1];
-try {
-  fs.writeFileSync(array[0], content);
-} catch (err) {
-  console.error(err);
+let fs = require('fs');
+let file = process.argv[2];
+let content = process.argv[3];
+
+function writeMe (file, content) {
+  fs.writeFile(file, content, function (err) {
+    if (err) {
+      console.log(err);
+    }
+  });
 }
+writeMe(file, content);

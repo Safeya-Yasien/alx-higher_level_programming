@@ -1,8 +1,14 @@
 #!/usr/bin/node
-const array = process.argv.slice(2);
 const request = require('request');
-request(array[0], function (err, res, body) {
-  if (err) {
-  }
-  console.log('code: ' + res.statusCode);
-});
+const url = process.argv[2];
+
+function displayStatus (url) {
+  request(url, function (error, response, body) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('code: ' + response.statusCode);
+    }
+  });
+}
+displayStatus(url);

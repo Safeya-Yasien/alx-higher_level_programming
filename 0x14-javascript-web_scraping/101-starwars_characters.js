@@ -1,21 +1,30 @@
 #!/usr/bin/node
-const array = process.argv.slice(2);
 const request = require('request');
-const request2 = require('request');
-const url = 'https://swapi.co/api/films/';
-let x = 0;
-let result = {};
-let result2 = {};
-request(url + array[0], function (err, res, body) {
-  result = JSON.parse(body);
-  if (err) {
-    console.log(err);
-  } else {
-    for (x = 0; x < result.characters.length; x++) {
-      request2(result.characters[x], function (err2, res2, body2) {
-        result2 = JSON.parse(body2);
-        console.log(result2.name);
-      });
+const episodeId = process.argv[2];
+const url = 'http://swapi.co/api/films/' + episodeId;
+
+function listOrderedCharacters (url) {
+  request(url, function (error, response, body) {
+    if (error) {
+      console.log(error);
+    } else {
+      let charDict = {};
+      let charList = JSON.parse(body).characters;
+      for (let i = 0; i < charList.length; i++) {
+        request(charList[i], function (error, response, body) {
+          if (error) {
+            console.log(error);
+          } else {
+            charDict[i] = JSON.parse(body).name;
+          }
+          if (charList.length === Object.keys(charDict).length) {
+            for (let k = 0; k < Object.keys(charDict).length; k++) {
+              console.log(charDict[k]);
+            }
+          }
+        });
+      }
     }
-  }
-});
+  });
+}
+listOrderedCharacters(url);
